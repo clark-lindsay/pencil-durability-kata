@@ -6,15 +6,20 @@ class Pencil {
 
     write(text) {
         for (const char of text) {
+            const charValue = valueOfCharacter(char);
+
             if (this.durability > 0) {
-                if (char.match(/[A-Z]/)) {
+                if (charValue === 2) {
+                    this.durability -= charValue;
                     if (this.durability >= 2) {
-                        this.durability -= 2;
                         this.page += char;
                     }
+                    else {
+                        this.page += ' '
+                    }
                 }
-                else if (char.match(/\S/)) {
-                    this.durability -= 1;
+                else if (charValue === 1) {
+                    this.durability -= charValue;
                     this.page += char;
                 }
                 else {
@@ -23,6 +28,18 @@ class Pencil {
             }
             else {
                 this.page += ' ';
+            }
+        }
+
+        function valueOfCharacter(char) {
+            if (char.match(/[A-Z]/)) {
+                return 2;
+            }
+            else if (char.match(/\S/)) {
+                return 1;
+            }
+            else {
+                return 0;
             }
         }
     }

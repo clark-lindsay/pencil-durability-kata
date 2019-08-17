@@ -27,7 +27,14 @@ describe('Pencil', () => {
         expect(secondPencil.page).toEqual('   space ');
     });
 
-    test('a pencil can be sharpened to regain durability', () => {
+    test('it will write a space if tasked to write a capital when it has only one durability left', () => {
+        pencil = new Pencil(4);
+        pencil.write('TnT is dynamite');
+        
+        expect(pencil.page).toEqual('Tn             ');
+    });
+
+    test('it can be sharpened to regain durability', () => {
         pencil = new Pencil(4);
         pencil.write('Text');
         pencil.sharpen();
