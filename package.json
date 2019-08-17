@@ -1,0 +1,16 @@
+{
+  "name": "pencil-durability-kata",
+  "version": "1.0.0",
+  "description": "A code kata for practicing TDD and clean coding principles.",
+  "main": "index.js",
+  "author": "Clark Lindsay",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "scripts": {
+    "pencil": "node .",
+    "test": "jest"
+  }
+}
