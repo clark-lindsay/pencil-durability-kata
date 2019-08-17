@@ -47,4 +47,17 @@ describe('Pencil', () => {
         expect(pencil.page).toEqual('Tex word');
         expect(secondPencil.durability).toEqual(40000);
     });
+
+    test('if it runs out of length, it cannot regain durability', () => {
+        pencil = new Pencil(4, 2);
+        pencil.write('word');
+        pencil.sharpen();
+        pencil.write('word');
+        pencil.sharpen();
+        pencil.write('word');
+        pencil.sharpen();
+        pencil.write('word');
+
+        expect(pencil.page).toEqual('wordwordword    ');
+    });
 });

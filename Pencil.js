@@ -1,7 +1,8 @@
 class Pencil {
-    constructor( durability = 100 ) {
+    constructor( durability = 100, length = 7 ) {
         this.page = ``;
         [this.durability, this.initialDurability] = [durability, durability];
+        this.length = length;
     }
 
     write(text) {
@@ -45,7 +46,10 @@ class Pencil {
     }
 
     sharpen() {
-        this.durability = this.initialDurability;
+        if (this.length > 0) {
+            this.durability = this.initialDurability;
+            this.length -= 1;
+        }
     }
 }
 
