@@ -1,7 +1,7 @@
 class Pencil {
     constructor( durability = 100 ) {
         this.page = ``;
-        this.durability = durability;
+        [this.durability, this.initialDurability] = [durability, durability];
     }
 
     write(text) {
@@ -25,6 +25,10 @@ class Pencil {
                 this.page += ' ';
             }
         }
+    }
+
+    sharpen() {
+        this.durability = this.initialDurability;
     }
 }
 

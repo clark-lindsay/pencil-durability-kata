@@ -26,4 +26,13 @@ describe('Pencil', () => {
         expect(pencil.page).toEqual('Tex ');
         expect(secondPencil.page).toEqual('   space ');
     });
+
+    test('a pencil can be sharpened to regain durability', () => {
+        pencil = new Pencil(4);
+        pencil.write('Text');
+        pencil.sharpen();
+        pencil.write('word');
+
+        expect(pencil.page).toEqual('Tex word');
+    });
 });
