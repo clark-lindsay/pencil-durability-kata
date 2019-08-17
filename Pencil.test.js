@@ -15,4 +15,15 @@ describe('Pencil', () => {
 
         expect(pencil.page).toEqual('She sells sea shells down by the sea shore');
     });
+
+    test('after writing too many non-whitespace characters, the pencil only produces space characters', () => {
+        pencil = new Pencil(4);
+        pencil.write('Text');
+        
+        secondPencil = new Pencil(5);
+        secondPencil.write('   spaces')
+
+        expect(pencil.page).toEqual('Tex ');
+        expect(secondPencil.page).toEqual('   space ');
+    });
 });
