@@ -40,6 +40,11 @@ describe('Pencil', () => {
         pencil.sharpen();
         pencil.write('word');
 
+        secondPencil = new Pencil(40000);
+        secondPencil.write('A somewhat long sentence');
+        secondPencil.sharpen();
+
         expect(pencil.page).toEqual('Tex word');
+        expect(secondPencil.durability).toEqual(40000);
     });
 });
