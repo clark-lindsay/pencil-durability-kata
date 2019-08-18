@@ -106,4 +106,13 @@ describe('Pencil', () => {
 
         expect(pencil.page).toEqual('An onion a day keeps the doctor away');
     });
+
+    test('it will use the @ character to mark overlap when editing text', () => {
+        pencil = new Pencil();
+        pencil.write('An apple a day keeps the doctor away');
+        pencil.erase('apple');
+        pencil.edit('artichoke');
+
+        expect(pencil.page).toEqual('An artich@k@ay keeps the doctor away');
+    });
 });
