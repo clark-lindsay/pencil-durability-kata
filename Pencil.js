@@ -57,9 +57,11 @@ class Pencil {
        if (this.page.includes(text)) {
            const wordLength = text.length; 
            const numCharsToErase = Math.min(wordLength, this.eraserDurability);
+           const replacementText = text.slice(0, wordLength - numCharsToErase) + ' '.repeat(numCharsToErase);
            const lastOccurenceOfText = this.page.lastIndexOf(text);
 
-           const newTrailingEnd = this.page.slice(lastOccurenceOfText).replace(text, text.slice(0, wordLength - numCharsToErase) + ' '.repeat(numCharsToErase));
+           const newTrailingEnd = this.page.slice(lastOccurenceOfText).replace(text, replacementText);
+
            this.page = this.page.slice(0, lastOccurenceOfText) + newTrailingEnd;
        }
     }
