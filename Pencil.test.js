@@ -124,4 +124,12 @@ describe('Pencil', () => {
 
         expect(pencil.page).toEqual('An arti  a day keeps the doctor away');
     });
+
+    test('it will not make an edit when there have been no erasures', () => {
+        pencil = new Pencil(34);
+        pencil.write('An apple a day keeps the doctor away');
+        pencil.edit('artichoke');
+
+        expect(pencil.page).toEqual('An apple a day keeps the doctor away');
+    });
 });

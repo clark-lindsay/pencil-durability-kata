@@ -33,8 +33,6 @@ class Pencil {
                 this.page += ' ';
             }
         }
-
-        
     }
 
     sharpen() {
