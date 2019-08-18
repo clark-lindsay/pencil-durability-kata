@@ -34,17 +34,7 @@ class Pencil {
             }
         }
 
-        function valueOfCharacter(char) {
-            if (char.match(/[A-Z]/)) {
-                return 2;
-            }
-            else if (char.match(/\S/)) {
-                return 1;
-            }
-            else {
-                return 0;
-            }
-        }
+        
     }
 
     sharpen() {
@@ -76,17 +66,41 @@ class Pencil {
 
             let newPageSection = this.page.slice(0, lastErasureIndex);
             for (let i = 0; i < textToInsert.length; ++i) {
+                if (this.pointDurability <= 0) {
+                    break;
+                }
+
                 if ((i + lastErasureIndex) < this.page.length && this.page[i + lastErasureIndex].match(/\S/)) {
                     newPageSection += '@';
+                    this.pointDurability -= 1;
                 }
                 else {
-                    newPageSection += textToInsert[i];
+                    const charValue = valueOfCharacter(textToInsert[i]);
+                    if (this.pointDurability >= charValue) {
+                        newPageSection += textToInsert[i];
+                        this.pointDurability -= charValue;
+                    }
+                    else {
+                        break;
+                    }
                 }
             }
 
             this.page = newPageSection + this.page.slice(newPageSection.length);
             this.erasureIndices.pop();
         }
+    }
+}
+
+function valueOfCharacter(char) {
+    if (char.match(/[A-Z]/)) {
+        return 2;
+    }
+    else if (char.match(/\S/)) {
+        return 1;
+    }
+    else {
+        return 0;
     }
 }
 

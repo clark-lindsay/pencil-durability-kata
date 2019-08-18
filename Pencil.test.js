@@ -115,4 +115,13 @@ describe('Pencil', () => {
 
         expect(pencil.page).toEqual('An artich@k@ay keeps the doctor away');
     });
+
+    test('it will stop writing or overwriting text if it is out of point durability during an edit', () => {
+        pencil = new Pencil(34);
+        pencil.write('An apple a day keeps the doctor away');
+        pencil.erase('apple');
+        pencil.edit('artichoke');
+
+        expect(pencil.page).toEqual('An arti  a day keeps the doctor away');
+    });
 });
