@@ -141,4 +141,14 @@ describe('Pencil', () => {
 
         expect(pencil.page).toEqual('An apple a day keeps the doctor artichoke');
     });
+
+    test('will not make an edit if the number of edit requests is more than the number of erasures', () => {
+        pencil = new Pencil();
+        pencil.write('An apple a day keeps the doctor away');
+        pencil.erase('apple');
+        pencil.edit('artichoke');
+        pencil.edit('onion');
+
+        expect(pencil.page).toEqual('An artich@k@ay keeps the doctor away');
+    });
 });
