@@ -8,6 +8,14 @@ class Pencil {
     }
   
     write(text) {
+      const writeCharToPage = (char) => {
+        this.page += char;
+      };
+  
+      const writeSpaceToPage = () => {
+        this.page += ' ';
+      };
+  
       for (const char of text) {
         const charValue = valueOfCharacter(char);
   
@@ -15,18 +23,18 @@ class Pencil {
           if (charValue === 2) {
             this.pointDurability -= charValue;
             if (this.pointDurability >= 2) {
-              this.page += char;
+              writeCharToPage(char);
             } else {
-              this.page += ' ';
+              writeSpaceToPage();
             }
           } else if (charValue === 1) {
             this.pointDurability -= charValue;
-            this.page += char;
+            writeCharToPage(char);
           } else {
-            this.page += char;
+            writeCharToPage(char);
           }
         } else {
-          this.page += ' ';
+          writeSpaceToPage();
         }
       }
     }
@@ -81,13 +89,12 @@ class Pencil {
             }
           }
         }
-        return this.page.slice(0, lastErasureIndex) + editedText;
+        const newPageSection = this.page.slice(0, lastErasureIndex) + editedText;
+        return newPageSection + this.page.slice(newPageSection.length);
       };
   
       if (this.erasureIndices.length !== 0 && this.pointDurability > 0) {
-        const newPageSection = writeEdit();
-  
-        this.page = newPageSection + this.page.slice(newPageSection.length);
+        this.page = writeEdit();
         this.erasureIndices.pop();
       }
     }
