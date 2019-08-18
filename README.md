@@ -10,6 +10,8 @@ Installing node on a Mac with Homebrew installed:
 Run the following terminal command in the project folder:
     $ make mac-install
 
+The following commands assume a Unix environment (Mac or Linux), but should also work in the Windows Subsystem for Linux (WSL).
+
 Then, to run the tests:
     $ make test
 
