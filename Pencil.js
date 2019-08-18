@@ -67,7 +67,7 @@ class Pencil {
                     break;
                 }
 
-                if ((i + lastErasureIndex) < this.page.length && this.page[i + lastErasureIndex].match(/\S/)) {
+                if ((i + lastErasureIndex) < this.page.length && isNotWhitespace(this.page[i + lastErasureIndex])) {
                     editedText += '@';
                     this.pointDurability -= 1;
                 }
@@ -95,15 +95,23 @@ class Pencil {
 }
 
 function valueOfCharacter(char) {
-    if (char.match(/[A-Z]/)) {
+    if (isACapitalLetter(char)) {
         return 2;
     }
-    else if (char.match(/\S/)) {
+    else if (isNotWhitespace(char)) {
         return 1;
     }
     else {
         return 0;
     }
+}
+
+function isACapitalLetter(char) {
+    return char.match(/[A-Z]/);
+}
+
+function isNotWhitespace(char) {
+    return char.match(/\S/); 
 }
 
 module.exports = Pencil;
