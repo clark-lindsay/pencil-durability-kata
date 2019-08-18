@@ -59,6 +59,9 @@ describe('Pencil', () => {
         pencil.write('word');
 
         expect(pencil.page).toEqual('wordwordword    ');
+
+        pencil.sharpen();
+        expect(pencil.pointDurability).toEqual(0);
     });
 
     test('it can erase previously written text', () => {
