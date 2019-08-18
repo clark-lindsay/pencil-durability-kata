@@ -81,6 +81,7 @@ describe('Pencil', () => {
         expect(pencil.page).toEqual('Some normal words');
 
         pencil.erase('mornal');
+        pencil.erase('normale');
 
         expect(pencil.page).toEqual('Some normal words');
     });
