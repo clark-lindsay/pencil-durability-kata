@@ -60,4 +60,16 @@ describe('Pencil', () => {
 
         expect(pencil.page).toEqual('wordwordword    ');
     });
+
+    test('it can erase previously written text', () => {
+        pencil = new Pencil();
+        pencil.write('How much wood would a woodchuck chuck if a woodchuck could chuck wood');
+        pencil.erase('chuck');
+
+        expect(pencil.page).toEqual('How much wood would a woodchuck chuck if a woodchuck could       wood')
+
+        pencil.erase('chuck');
+
+        expect(pencil.page).toEqual('How much wood would a woodchuck chuck if a wood      could       wood')
+    });
 });

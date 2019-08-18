@@ -51,6 +51,16 @@ class Pencil {
             this.length -= 1;
         }
     }
+
+    erase(text) {
+       if (this.page.includes(text)) {
+           const wordLength = text.length; 
+           const lastOccurenceOfText = this.page.lastIndexOf(text);
+
+           const newTrailingEnd = this.page.slice(lastOccurenceOfText).replace(text, ' '.repeat(wordLength));
+           this.page = this.page.slice(0, lastOccurenceOfText) + newTrailingEnd;
+       }
+    }
 }
 
 module.exports = Pencil;
