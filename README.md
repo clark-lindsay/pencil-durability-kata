@@ -10,7 +10,7 @@ Installing on a Mac with Homebrew installed:
 Run the following terminal command in the project folder:
     $ make mac-install
 
-Installing on Unix, including a non-Homebrew Mac machine:
+Installing on Unix, including a non-Homebrew Mac machine (this will require node to already be installed):
 Run the following:
     $ make install
 
