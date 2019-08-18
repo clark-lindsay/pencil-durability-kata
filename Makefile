@@ -1,6 +1,6 @@
 BIN=./node_modules/.bin
 
-install-mac:
+mac-install:
 	brew install yarn
 	yarn install
 	NODE_ENV="development" yarn --ignore-engines
@@ -15,5 +15,8 @@ test: jest
 jest:
 	BABEL_ENV=test ${BIN}/jest
 
+build:
+	chmod +x index.js
+
 repl:
-	node .
+	./index.js
