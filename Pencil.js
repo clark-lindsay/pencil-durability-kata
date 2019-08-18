@@ -4,6 +4,7 @@ class Pencil {
         [this.pointDurability, this.initialDurability] = [pointDurability, pointDurability];
         this.length = length;
         this.eraserDurability = eraserDurability;
+        this.erasureIndices = [];
     }
 
     write(text) {
@@ -65,7 +66,27 @@ class Pencil {
            this.page = this.page.slice(0, lastOccurenceOfText) + newTrailingEnd;
 
            this.eraserDurability -= numCharsToErase;
+           this.erasureIndices.push(lastOccurenceOfText);
        }
+    }
+
+    edit(textToInsert) {
+        if (this.erasureIndices.length !== 0 && this.pointDurability > 0) {
+            const lastErasureIndex = this.erasureIndices[this.erasureIndices.length - 1];
+
+            let newPageSection = this.page.slice(0, lastErasureIndex);
+            for (let i = 0; i < textToInsert.length; ++i) {
+                if ((i + lastErasureIndex) < this.page.length && this.page[i + lastErasureIndex].match(/\S/)) {
+                    newPageSection += '@';
+                }
+                else {
+                    newPageSection += textToInsert[i];
+                }
+            }
+
+            this.page = newPageSection + this.page.slice(newPageSection.length);
+            this.erasureIndices.pop();
+        }
     }
 }
 

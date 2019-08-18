@@ -97,4 +97,13 @@ describe('Pencil', () => {
 
         expect(pencil.page).toEqual('Buffalo B   ');
     });
+
+    test('it can edit existing text, provided that some text has been erased', () => {
+        pencil = new Pencil();
+        pencil.write('An apple a day keeps the doctor away');
+        pencil.erase('apple');
+        pencil.edit('onion');
+
+        expect(pencil.page).toEqual('An onion a day keeps the doctor away');
+    });
 });
