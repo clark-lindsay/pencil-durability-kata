@@ -61,23 +61,22 @@ class Pencil {
     }
 
     edit(textToInsert) {
-        if (this.erasureIndices.length !== 0 && this.pointDurability > 0) {
-            const lastErasureIndex = this.erasureIndices[this.erasureIndices.length - 1];
-
-            let newPageSection = this.page.slice(0, lastErasureIndex);
+        const lastErasureIndex = this.erasureIndices[this.erasureIndices.length - 1];
+        const writeEdit = () => {
+            let editedText = '';
             for (let i = 0; i < textToInsert.length; ++i) {
                 if (this.pointDurability <= 0) {
                     break;
                 }
 
                 if ((i + lastErasureIndex) < this.page.length && this.page[i + lastErasureIndex].match(/\S/)) {
-                    newPageSection += '@';
+                    editedText += '@';
                     this.pointDurability -= 1;
                 }
                 else {
                     const charValue = valueOfCharacter(textToInsert[i]);
                     if (this.pointDurability >= charValue) {
-                        newPageSection += textToInsert[i];
+                        editedText += textToInsert[i];
                         this.pointDurability -= charValue;
                     }
                     else {
@@ -85,7 +84,12 @@ class Pencil {
                     }
                 }
             }
+            return editedText;
+        }
 
+        if (this.erasureIndices.length !== 0 && this.pointDurability > 0) {
+            const newPageSection = this.page.slice(0, lastErasureIndex) + writeEdit();
+            
             this.page = newPageSection + this.page.slice(newPageSection.length);
             this.erasureIndices.pop();
         }
