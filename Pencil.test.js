@@ -86,6 +86,13 @@ describe('Pencil', () => {
         expect(pencil.page).toEqual('Some normal words');
     });
 
+    test('it will do nothing when erase is called when nothing has yet been written', () => {
+        pencil = new Pencil();
+        pencil.erase('chuck');
+
+        expect(pencil.page).toEqual('');
+    });
+
     test('it will eventually run out of eraser', () => {
         pencil = new Pencil(100, 7, 3);
         pencil.write('Buffalo Bill');
