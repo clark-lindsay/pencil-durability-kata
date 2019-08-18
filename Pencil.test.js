@@ -96,7 +96,7 @@ describe('Pencil', () => {
         expect(pencil.page).toEqual('');
     });
 
-    test('it will eventually run out of eraser', () => {
+    test('it will eventually run out of eraser, and it erases the most recently written text first', () => {
         pencil = new Pencil(100, 7, 3);
         pencil.write('Buffalo Bill');
         pencil.erase('Bill');
