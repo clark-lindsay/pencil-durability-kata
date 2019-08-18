@@ -126,10 +126,19 @@ describe('Pencil', () => {
     });
 
     test('it will not make an edit when there have been no erasures', () => {
-        pencil = new Pencil(34);
+        pencil = new Pencil();
         pencil.write('An apple a day keeps the doctor away');
         pencil.edit('artichoke');
 
         expect(pencil.page).toEqual('An apple a day keeps the doctor away');
+    });
+
+    test('it will add words to the end of the page for an edit, if the last erasure was the last word on the page', () => {
+        pencil = new Pencil();
+        pencil.write('An apple a day keeps the doctor away');
+        pencil.erase('away')
+        pencil.edit('artichoke');
+
+        expect(pencil.page).toEqual('An apple a day keeps the doctor artichoke');
     });
 });
