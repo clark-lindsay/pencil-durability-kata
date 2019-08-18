@@ -72,4 +72,16 @@ describe('Pencil', () => {
 
         expect(pencil.page).toEqual('How much wood would a woodchuck chuck if a wood      could       wood')
     });
+
+    test('it will not erase something that is not there', () => {
+        pencil = new Pencil();
+        pencil.write('Some normal words');
+        pencil.erase('chuck');
+
+        expect(pencil.page).toEqual('Some normal words');
+
+        pencil.erase('mornal');
+
+        expect(pencil.page).toEqual('Some normal words');
+    });
 });
