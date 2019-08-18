@@ -45,7 +45,7 @@ describe('Pencil', () => {
         secondPencil.sharpen();
 
         expect(pencil.page).toEqual('Tex word');
-        expect(secondPencil.durability).toEqual(40000);
+        expect(secondPencil.pointDurability).toEqual(40000);
     });
 
     test('if it runs out of length, it cannot regain durability', () => {
