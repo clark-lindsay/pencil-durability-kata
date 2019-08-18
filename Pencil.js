@@ -1,8 +1,9 @@
 class Pencil {
-    constructor( pointDurability = 100, length = 7 ) {
+    constructor( pointDurability = 100, length = 7, eraserDurability = 50 ) {
         this.page = ``;
         [this.pointDurability, this.initialDurability] = [pointDurability, pointDurability];
         this.length = length;
+        this.eraserDurability = eraserDurability;
     }
 
     write(text) {
@@ -55,9 +56,10 @@ class Pencil {
     erase(text) {
        if (this.page.includes(text)) {
            const wordLength = text.length; 
+           const numCharsToErase = Math.min(wordLength, this.eraserDurability);
            const lastOccurenceOfText = this.page.lastIndexOf(text);
 
-           const newTrailingEnd = this.page.slice(lastOccurenceOfText).replace(text, ' '.repeat(wordLength));
+           const newTrailingEnd = this.page.slice(lastOccurenceOfText).replace(text, text.slice(0, wordLength - numCharsToErase) + ' '.repeat(numCharsToErase));
            this.page = this.page.slice(0, lastOccurenceOfText) + newTrailingEnd;
        }
     }

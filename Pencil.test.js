@@ -85,4 +85,12 @@ describe('Pencil', () => {
 
         expect(pencil.page).toEqual('Some normal words');
     });
+
+    test('it will eventually run out of eraser', () => {
+        pencil = new Pencil(100, 7, 3);
+        pencil.write('Buffalo Bill');
+        pencil.erase('Bill');
+
+        expect(pencil.page).toEqual('Buffalo B   ');
+    });
 });
