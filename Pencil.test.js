@@ -92,5 +92,9 @@ describe('Pencil', () => {
         pencil.erase('Bill');
 
         expect(pencil.page).toEqual('Buffalo B   ');
+        
+        pencil.erase('Buffalo');
+
+        expect(pencil.page).toEqual('Buffalo B   ');
     });
 });

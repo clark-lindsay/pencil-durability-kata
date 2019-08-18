@@ -54,7 +54,7 @@ class Pencil {
     }
 
     erase(text) {
-       if (this.page.includes(text)) {
+       if (this.page.includes(text) && this.eraserDurability > 0) {
            const wordLength = text.length; 
            const numCharsToErase = Math.min(wordLength, this.eraserDurability);
            const replacementText = text.slice(0, wordLength - numCharsToErase) + ' '.repeat(numCharsToErase);
@@ -63,6 +63,8 @@ class Pencil {
            const newTrailingEnd = this.page.slice(lastOccurenceOfText).replace(text, replacementText);
 
            this.page = this.page.slice(0, lastOccurenceOfText) + newTrailingEnd;
+
+           this.eraserDurability -= numCharsToErase;
        }
     }
 }
