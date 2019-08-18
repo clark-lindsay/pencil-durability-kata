@@ -1,18 +1,13 @@
 BIN=./node_modules/.bin
 
 mac-install:
-	brew install yarn
-	yarn install
-	NODE_ENV="development" yarn --ignore-engines
-
-install:
-	curl -o- -L https://yarnpkg.com/install.sh | bash
-	yarn install
-	NODE_ENV="development" yarn --ignore-engines
+	brew install node
+	NODE_ENV="development"
 
 test: jest
 
 jest:
+	NODE_ENV="development"
 	BABEL_ENV=test ${BIN}/jest
 
 build:
