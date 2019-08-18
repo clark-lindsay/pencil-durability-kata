@@ -21,10 +21,10 @@ describe('Pencil', () => {
         pencil.write('Text');
         
         secondPencil = new Pencil(5);
-        secondPencil.write('   spaces')
+        secondPencil.write('   \nspaces')
 
         expect(pencil.page).toEqual('Tex ');
-        expect(secondPencil.page).toEqual('   space ');
+        expect(secondPencil.page).toEqual('   \nspace ');
     });
 
     test('it will write a space if tasked to write a capital when it has only one durability left', () => {
